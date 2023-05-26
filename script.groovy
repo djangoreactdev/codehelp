@@ -19,7 +19,7 @@ def deployApp() {
     sh 'docker rm codehelp || true'
     sh 'docker rmi codehelp || true'
     sh 'docker pull djangoreactdev/codehelp:1.0'
-    sh 'docker run -d --name codehelp -p 80:3000 djangoreactdev/codehelp:1.0'
+    sh 'docker run -d --name codehelp -p 83:3000 djangoreactdev/codehelp:1.0'
 } 
 
 return this
