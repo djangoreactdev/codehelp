@@ -29,15 +29,15 @@ pipeline {
                 }
             }
         }
-        stage("deploy") {
-            agent {
-                label 'production'
-            }
-            steps {
-                script {
-                    gv.deployApp()
-                }
-            }
-        }
+        // stage("deploy") {
+        //     agent {
+        //         label 'production'
+        //     }
+        //     steps {
+        //         script {
+        //             gv.deployApp()
+        //         }
+        //     }
+        // }
     }
 }
