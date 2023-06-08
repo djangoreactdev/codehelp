@@ -6,7 +6,7 @@ class ScedulerConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "sceduler"
 
-    # def ready(self):
-    #     from .jobs.backup import run_scheduler
+    def ready(self):
+        from .jobs.backup import run_scheduler
 
-    #     run_scheduler()
+        run_scheduler()

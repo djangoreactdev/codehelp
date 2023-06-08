@@ -81,7 +81,7 @@ THIRD_PARTY_APPS = [
     "drf_spectacular",
     "rest_framework_simplejwt.token_blacklist",
     "dbbackup",  # django-dbbackup
-    "storages",  # django-dbbackup
+    # "storages",  # django-dbbackup
 ]
 
 LOCAL_APPS = [
