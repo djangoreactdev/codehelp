@@ -73,3 +73,34 @@ db.sqlite3
 .gitignore
 .dockerignore
 README.md
+
+.editorconfig
+.gitattributes
+.github
+.gitignore
+.gitlab-ci.yml
+.idea
+.pre-commit-config.yaml
+.readthedocs.yml
+.travis.yml
+venv
+.git
+
+#######################Nextjs####################
+# Ignore development files and directories
+node_modules
+.cache
+.next
+
+# Ignore version control files
+.git
+.gitignore
+
+# Ignore build artifacts and logs
+out
+build/
+.DS_Store
+npm-debug.log
+yarn-error.log
+
+
