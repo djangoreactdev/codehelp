@@ -59,12 +59,8 @@ services:
   codehelp-front:
     build:
       context: ./codehelp-front
-      target: runner
     image: codehelp-front:1.0
     container_name: codehelp-front
-    volumes:
-      - ./codehelp-front:/app
-    command: npm start
     ports:
       - "3000:3000"
     depends_on:
