@@ -1,4 +1,4 @@
-from mega import Mega
+# from mega import Mega
 from apscheduler.schedulers.background import BackgroundScheduler
 import subprocess, os, boto3, logging
 from django.core.files.storage import FileSystemStorage
