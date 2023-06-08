@@ -10,8 +10,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-
-    image: codehelp_production_django
+    container_name: codehelp-api
+    image: codehelp-api:1.0
     depends_on:
       - postgres
       - redis
