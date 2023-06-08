@@ -40,9 +40,9 @@ WORKDIR /app
 # Copy app files
 COPY . .
 # Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
-RUN yarn install 
-# Build the app
-RUN yarn build
+RUN yarn install && yarn cache clean --force && yarn build
+# # Build the app
+# RUN yarn build
 
 # Bundle static assets with nginx
 FROM nginx:1.21.0-alpine as production
