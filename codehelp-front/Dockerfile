@@ -59,10 +59,6 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-ARG REACT_APP_BASE_API
-ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-""}
-RUN touch .env && echo "REACT_APP_BASE_API=$REACT_APP_BASE_API" >> .env
-
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN yarn build
