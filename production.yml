@@ -71,5 +71,5 @@ services:
     environment:
       NODE_ENV: production
       REACT_APP_BASE_API: http://django:5000
-      api_url: http://django:5000
+      # api_url: http://django:5000
     # user: root
