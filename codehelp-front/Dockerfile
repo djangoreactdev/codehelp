@@ -38,6 +38,7 @@ FROM node:18-alpine as builder
 # Set the working directory to /app inside the container
 ARG REACT_APP_BASE_API
 ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-http://codehelp-api:8000}
+RUN touch .env && echo "REACT_APP_BASE_API=$REACT_APP_BASE_API" >> .env
 WORKDIR /app
 # Copy app files
 COPY . .
