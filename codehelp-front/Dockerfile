@@ -70,6 +70,11 @@ ENV NODE_ENV production
 COPY --from=builder /app/build /usr/share/nginx/html
 # Add your nginx.conf
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+ARG REACT_APP_BASE_API
+ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-""}
+RUN touch .env && echo "REACT_APP_BASE_API=$REACT_APP_BASE_API" >> .env
+
 # Expose port
 EXPOSE 3000
 # Start nginx
