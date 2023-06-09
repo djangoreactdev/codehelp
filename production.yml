@@ -72,6 +72,6 @@ services:
       - django
     environment:
       NODE_ENV: production
-      REACT_APP_BASE_API: http://django:5000
+      REACT_APP_BASE_API: https://codehelp-api:5000
       # api_url: http://django:5000
     # user: root
