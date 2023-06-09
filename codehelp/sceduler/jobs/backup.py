@@ -36,5 +36,10 @@ def createBackup():
 
 def run_scheduler():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(createBackup, "interval", days=1)
-    scheduler.start()
+    job_id = "createBackup"
+    job_exists = any(job.id == job_id for job in scheduler.get_jobs())
+    if not job_exists:
+        scheduler.add_job(createBackup, id=job_id, trigger="interval", days=1)
+        scheduler.start()
+    else:
+        print("Job already exists")
