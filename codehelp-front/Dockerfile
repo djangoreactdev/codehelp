@@ -72,7 +72,7 @@ COPY --from=builder /app/build /usr/share/nginx/html
 COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 
 ARG REACT_APP_BASE_API
-ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-""}
+ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-"//codehelp-api:5000"}
 RUN touch .env && echo "REACT_APP_BASE_API=$REACT_APP_BASE_API" >> .env
 
 # Expose port
