@@ -12,6 +12,8 @@ services:
       dockerfile: ./compose/production/django/Dockerfile
     container_name: codehelp-api
     image: codehelp-api:1.0
+    expose:
+      - 5000
     depends_on:
       - postgres
       - redis
@@ -31,18 +33,18 @@ services:
     env_file:
       - ./.envs/.production/.postgres
 
-  traefik:
-    build:
-      context: .
-      dockerfile: ./compose/production/traefik/Dockerfile
-    image: codehelp_production_traefik
-    depends_on:
-      - django
-    volumes:
-      - production_traefik:/etc/traefik/acme
-    ports:
-      - '0.0.0.0:80:80'
-      - '0.0.0.0:443:443'
+  # traefik:
+  #   build:
+  #     context: .
+  #     dockerfile: ./compose/production/traefik/Dockerfile
+  #   image: codehelp_production_traefik
+  #   depends_on:
+  #     - django
+  #   volumes:
+  #     - production_traefik:/etc/traefik/acme
+  #   ports:
+  #     - '0.0.0.0:80:80'
+  #     - '0.0.0.0:443:443'
 
   redis:
     image: redis:6
@@ -61,6 +63,7 @@ services:
       context: ./codehelp-front
     image: codehelp-front:1.0
     container_name: codehelp-front
+    # command: yarn start
     ports:
       - "3000:3000"
     depends_on:
@@ -68,4 +71,5 @@ services:
     environment:
       NODE_ENV: production
       REACT_APP_BASE_API: http://django:5000
+      api_url: http://django:5000
     # user: root

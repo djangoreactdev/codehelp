@@ -34,18 +34,38 @@
 
 # CMD ["yarn", "start"]
 
-FROM node:18-alpine as builder
-# Set the working directory to /app inside the container
+# FROM node:18-alpine as builder
+# # Set the working directory to /app inside the container
+# ARG REACT_APP_BASE_API
+# ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-""}
+# RUN touch .env && echo "REACT_APP_BASE_API=$REACT_APP_BASE_API" >> .env
+# WORKDIR /app
+# # Copy app files
+# COPY . .
+# # Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
+# RUN yarn install && yarn build
+# # # Build the app
+# # RUN yarn build
+
+FROM node:18-alpine AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+RUN  yarn install 
+
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+
 ARG REACT_APP_BASE_API
 ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-""}
 RUN touch .env && echo "REACT_APP_BASE_API=$REACT_APP_BASE_API" >> .env
-WORKDIR /app
-# Copy app files
-COPY . .
-# Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
-RUN yarn install && yarn build
-# # Build the app
-# RUN yarn build
+
+ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN yarn build
 
 # Bundle static assets with nginx
 FROM nginx:1.21.0-alpine as production
@@ -58,3 +78,5 @@ COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 3000
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
+
+# CMD ["yarn", "start"]
