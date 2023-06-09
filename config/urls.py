@@ -10,7 +10,7 @@ from codehelp.upload.views import image_upload, terminal
 
 
 urlpatterns = [
-    path("home", TemplateView.as_view(template_name="pages/home.html"), name="home"),
+    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path("about/", TemplateView.as_view(template_name="pages/about.html"), name="about"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
@@ -41,9 +41,9 @@ urlpatterns += [
     ),
 ]
 
-urlpatterns += [
-    re_path("", TemplateView.as_view(template_name="index.html"), name="index"),
-]
+# urlpatterns += [
+#     re_path("", TemplateView.as_view(template_name="index.html"), name="index"),
+# ]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

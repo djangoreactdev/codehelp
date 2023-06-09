@@ -56,16 +56,16 @@ services:
   #   volumes:
   #     - production_postgres_data_backups:/backups:z
 
-  # codehelp-front:
-  #   build:
-  #     context: ./codehelp-front
-  #   image: codehelp-front:1.0
-  #   container_name: codehelp-front
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - django
-  #   environment:
-  #     NODE_ENV: production
-  #     REACT_APP_BASE_API: http://django:5000
-  #   # user: root
+  codehelp-front:
+    build:
+      context: ./codehelp-front
+    image: codehelp-front:1.0
+    container_name: codehelp-front
+    ports:
+      - "3000:3000"
+    depends_on:
+      - django
+    environment:
+      NODE_ENV: production
+      REACT_APP_BASE_API: http://django:5000
+    # user: root
