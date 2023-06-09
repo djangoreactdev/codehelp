@@ -36,11 +36,13 @@
 
 FROM node:18-alpine as builder
 # Set the working directory to /app inside the container
+ARG REACT_APP_BASE_API
+ENV REACT_APP_BASE_API ${REACT_APP_BASE_API:-http://localhost:8000}
 WORKDIR /app
 # Copy app files
 COPY . .
 # Install dependencies (npm ci makes sure the exact versions in the lockfile gets installed)
-RUN yarn install && yarn cache clean --force && yarn build
+RUN yarn install && yarn build
 # # Build the app
 # RUN yarn build
 
