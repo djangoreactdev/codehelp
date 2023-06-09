@@ -20,8 +20,7 @@ const CSRFToken = () => {
   const [csrftoken, setcsrftoken] = useState("");
 
   useEffect(() => {
-    
-     // removeCookie("csrftoken");
+    // removeCookie("csrftoken");
     // removeCookie("sessionid");
 
     const csrftoken = getCookie("csrftoken");
@@ -39,7 +38,6 @@ const CSRFToken = () => {
 
     const promise = CsrfToken();
     promise.then((data) => {
-
       setCookie("csrftoken", data.CSRF_COOKIE, cookie_attributes);
       setcsrftoken(data.CSRF_COOKIE);
 

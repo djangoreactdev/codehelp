@@ -15,12 +15,12 @@ def buildImage() {
             writeFile file: '.envs/.production/.django', text: readFile(ENV_codehelp_django)
             writeFile file: '.envs/.production/.postgres', text: readFile(ENV_codehelp_postgres)
         }
-    sh 'docker compose -f production.yml build django codehelp-front'
+    sh 'docker compose -f production.yml build django'
     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 
         sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
-        sh 'docker tag codehelp-front:1.0 djangoreactdev/codehelp-front:1.0'
-        sh 'docker push djangoreactdev/codehelp-front:1.0'
+        // sh 'docker tag codehelp-front:1.0 djangoreactdev/codehelp-front:1.0'
+        // sh 'docker push djangoreactdev/codehelp-front:1.0'
         sh 'docker tag codehelp-api:1.0 djangoreactdev/codehelp-api:1.0'
         sh 'docker push djangoreactdev/codehelp-api:1.0'
         // sh 'docker tag codehelp-dashboard:1.0 djangoreactdev/codehelp-dashboard:1.0'
