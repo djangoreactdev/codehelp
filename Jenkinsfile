@@ -29,6 +29,14 @@ pipeline {
                 }
             }
         }
+        stage('Trigger deploy job') {
+            steps {
+                build job: 'deploy-with-swarm-traefik', parameters: [
+                    // Specify any parameters if required
+                    // Example: [string(name: 'PARAM_NAME', value: 'PARAM_VALUE')]
+                ]
+            }
+        }
         // stage("deploy") {
         //     agent {
         //         label 'production'

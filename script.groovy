@@ -27,6 +27,7 @@ def buildImage() {
         // sh 'docker push djangoreactdev/codehelp-dashboard:1.0'
     }
 } 
+  
 
 // def deployApp() {
 //     echo 'deploying the application...'
