@@ -13,8 +13,8 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-
-    image: codehelp_production_django
+    container_name: codehelp-api
+    image: codehelp-api:1.0.0
     volumes:
       - production_django_media:/app/codehelp/media
       # - production_django_static:/app/staticfiles
@@ -69,11 +69,12 @@ services:
     image: codehelp_production_flower
     command: /start-flower
 
-  client:
+  codehelp-front:
     build:
         context: ./client
         dockerfile: ./docker/production/Dockerfile
-    # command: pnpm build
+    container_name: codehelp-front
+    image: codehelp-front:1.0.0
     restart: unless-stopped
     volumes:
         # - ./client:/app
