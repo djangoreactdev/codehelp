@@ -32,6 +32,7 @@ ENV PYTHONUNBUFFERED 1
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV BUILD_ENV ${BUILD_ENVIRONMENT}
 
+# RUN mkdir $APP_HOME/staticfiles
 WORKDIR ${APP_HOME}
 
 RUN addgroup --system django \
@@ -88,8 +89,8 @@ RUN chown django:django ${APP_HOME}
 
 USER django
 
-RUN DATABASE_URL="" \
-  DJANGO_SETTINGS_MODULE="config.settings.test" \
-  python manage.py compilemessages
+# RUN DATABASE_URL="" \
+#   DJANGO_SETTINGS_MODULE="config.settings.test" \
+#   python manage.py compilemessages
 
 ENTRYPOINT ["/entrypoint"]

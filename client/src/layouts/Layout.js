@@ -30,7 +30,7 @@ const BlankLayout = () => {
             }
           />
         )}
-        <div className="h-[calc(100%-60px)] overflow-y-scroll no-scrollbar">
+        <div className="h-[calc(100%-72px)] overflow-y-scroll no-scrollbar">
           <Outlet />
         </div>
       </div>
