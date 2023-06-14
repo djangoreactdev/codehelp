@@ -14,13 +14,13 @@ RUN npm install -g pnpm && pnpm install
 
 RUN pnpm build
 
+RUN mv ${APP_HOME}/build/* /usr/share/nginx/html
+
 FROM nginx:1.21.3-alpine
 
 RUN rm /etc/nginx/conf.d/default.conf
 
 COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
-
-COPY ${APP_HOME}/build /usr/share/nginx/html
 
 EXPOSE 8080
 
