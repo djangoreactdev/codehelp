@@ -5,7 +5,7 @@ volumes:
   codehelp_local_postgres_data_backups: {}
 
 services:
-  django:
+  django: &django
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
@@ -13,6 +13,7 @@ services:
     container_name: codehelp_local_django
     depends_on:
       - postgres
+      - redis
     volumes:
       - .:/app:z
     env_file:
@@ -49,3 +50,56 @@ services:
     ports:
       - '9000:9000'
     command: /start-docs
+
+  redis:
+    image: redis:6
+    container_name: codehelp_local_redis
+
+  celeryworker:
+    <<: *django
+    image: codehelp_local_celeryworker
+    container_name: codehelp_local_celeryworker
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /start-celeryworker
+
+  celerybeat:
+    <<: *django
+    image: codehelp_local_celerybeat
+    container_name: codehelp_local_celerybeat
+    depends_on:
+      - redis
+      - postgres
+    ports: []
+    command: /start-celerybeat
+
+  flower:
+    <<: *django
+    image: codehelp_local_flower
+    container_name: codehelp_local_flower
+    ports:
+      - '5555:5555'
+    command: /start-flower
+
+  client:
+    build:
+        context: ./client
+        dockerfile: ./docker/local/Dockerfile
+    restart: on-failure
+    volumes:
+        - ./client:/app
+        - /app/node_modules
+    ports:
+        - "3000:3000"
+
+  nginx:
+    restart: always
+    depends_on:
+        - django
+    build:
+        context: ./compose/local/nginx
+        dockerfile: Dockerfile
+    ports:
+        - "8080:80"

@@ -1,8 +1,12 @@
 python-slugify==8.0.1  # https://github.com/un33k/python-slugify
 Pillow==9.5.0  # https://github.com/python-pillow/Pillow
 argon2-cffi==21.3.0  # https://github.com/hynek/argon2_cffi
+whitenoise==6.4.0  # https://github.com/evansd/whitenoise
 redis==4.5.5  # https://github.com/redis/redis-py
 hiredis==2.2.3  # https://github.com/redis/hiredis-py
+celery==5.3.0  # pyup: < 6.0  # https://github.com/celery/celery
+django-celery-beat==2.5.0  # https://github.com/celery/django-celery-beat
+flower==1.2.0  # https://github.com/mher/flower
 
 # Django
 # ------------------------------------------------------------------------------
@@ -19,10 +23,13 @@ django-cors-headers==4.0.0  # https://github.com/adamchainz/django-cors-headers
 # DRF-spectacular for api documentation
 drf-spectacular==0.26.2  # https://github.com/tfranzel/drf-spectacular
 
-# my requirements
-djangorestframework-simplejwt==5.2.2
-apscheduler==3.9.1
-django-dbbackup==4.0.2
-mega.py==1.0.8
-boto3
-django-storages[boto3]
+django-filter==21.1
+django-autoslug==1.9.8
+django-countries==7.2.1
+django-phonenumber-field==5.2.0
+djoser==2.1.0
+djangorestframework-simplejwt==4.8.0
+django-celery-email==3.0.0
+phonenumbers==8.12.33
+
+django-storages[boto3]==1.13.2  # https://github.com/jschneier/django-storages

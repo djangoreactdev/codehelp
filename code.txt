@@ -64,7 +64,7 @@ sudo -u postgres psql -c 'core_django_dev;'
 
 docker compose exec web python3 manage.py dumpdata --format json -e contenttypes -e auth.permission > data.json
 
-apk add curl && curl -X 'GET' 'http://django:5000/auth/csrf_cookie/'
+apk add curl && curl -X 'GET' 'http://localhost:5000/codehelp/v1/auth/csrf_cookie/'
 
 curl -X 'GET' 'http://odehelp-api:5000/auth/csrf_cookie/'
 curl -X 'GET' 'http://127.0.0.1/api/auth/csrf_cookie/'

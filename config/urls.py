@@ -1,13 +1,11 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path, re_path
+from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
-from codehelp.upload.views import image_upload, terminal
-
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
@@ -20,17 +18,10 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
-
 # API URLS
 urlpatterns += [
     # API base url
-    path("auth/", include("codehelp.user_profile.urls_auth")),
-    path("auth/profile/", include("codehelp.user_profile.urls_profile")),
     path("api/", include("config.api_router")),
-    path("", include("codehelp.sections.urls")),
-    path("", include("codehelp.movies.urls")),
-    path("upload/", image_upload, name="upload"),
-    path("terminal/", terminal, name="terminal"),
     # DRF auth token
     path("auth-token/", obtain_auth_token),
     path("api/schema/", SpectacularAPIView.as_view(), name="api-schema"),
@@ -41,9 +32,16 @@ urlpatterns += [
     ),
 ]
 
-# urlpatterns += [
-#     re_path("", TemplateView.as_view(template_name="index.html"), name="index"),
-# ]
+urlpatterns += [
+    # path("supersecret/", admin.site.urls),
+    path("api/v1/auth/", include("djoser.urls")),
+    path("api/v1/auth/", include("djoser.urls.jwt")),
+    path("api/v1/profile/", include("apps.profiles.urls")),
+    path("api/v1/properties/", include("apps.properties.urls")),
+    path("api/v1/ratings/", include("apps.ratings.urls")),
+    path("api/v1/enquiries/", include("apps.enquiries.urls")),
+    path("api/v1/", include("apps.sections.urls")),
+]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

@@ -51,4 +51,18 @@ The following details how to deploy this application.
 
 ### Docker
 
+#### Building the images
+
+    ```
+    docker volume create postgres_data
+    
+    docker compose -f local.yml build
+    docker compose -f local.yml up
+    docker compose -f local.yml down
+    
+    
+    
+    ``` 
+
+
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).

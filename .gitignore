@@ -278,8 +278,8 @@ codehelp/media/
 .ipython/
 .env
 .envs/*
-!.envs/.local/
-
+# !.envs/.local/
+# .envs/.local/
 
 __pycache__
 env
@@ -460,3 +460,5 @@ __pycache
 
 tailadmin
 tailadmin/*
+lab-testing
+.envs/.local/
