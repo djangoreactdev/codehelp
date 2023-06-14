@@ -16,3 +16,21 @@ CELERY_FLOWER_PASSWORD=debug
 
 SIGNING_KEY=django-
 DEFAULT_FROM_EMAIL=django@localhost
+
+# Email
+# ------------------------------------------------------------------------------
+EMAIL_BACKEND=
+MAILER_EMAIL_BACKEND=
+EMAIL_HOST=
+EMAIL_HOST_PASSWORD=
+EMAIL_HOST_USER=
+EMAIL_PORT=
+EMAIL_USE_TLS=
+# EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL="atlantida.goods@gmail.com"
+
+# AWS
+# ------------------------------------------------------------------------------
+DJANGO_AWS_ACCESS_KEY_ID=
+DJANGO_AWS_SECRET_ACCESS_KEY=
+DJANGO_AWS_STORAGE_BUCKET_NAME=

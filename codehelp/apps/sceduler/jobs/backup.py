@@ -1,7 +1,6 @@
 # from mega import Mega
 from apscheduler.schedulers.background import BackgroundScheduler
-import subprocess, os, boto3, logging
-from django.core.files.storage import FileSystemStorage
+import subprocess
 
 # def sendToMega():
 #     mega = Mega()
@@ -37,6 +36,7 @@ def createBackup():
 def run_scheduler():
     scheduler = BackgroundScheduler()
     job_id = "createBackup"
+    print(scheduler.get_jobs())
     job_exists = any(job.id == job_id for job in scheduler.get_jobs())
     if not job_exists:
         scheduler.add_job(createBackup, id=job_id, trigger="interval", days=1)

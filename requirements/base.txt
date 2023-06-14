@@ -31,6 +31,7 @@ djoser==2.1.0
 djangorestframework-simplejwt==4.8.0
 django-celery-email==3.0.0
 phonenumbers==8.12.33
+apscheduler==3.9.1
 
 django-storages[boto3]==1.13.2  # https://github.com/jschneier/django-storages
 
