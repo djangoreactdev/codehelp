@@ -3,11 +3,12 @@ from rest_framework import permissions, status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 
-from apps.profiles.models import Profile
+from codehelp.apps.profiles.models import Profile
 
 from .models import Rating
 
 User = get_user_model()
+
 
 # create agent review
 @api_view(["POST"])
@@ -21,9 +22,7 @@ def create_agent_review(request, profile_id):
         formatted_response = {"message": "You can't rate yourself"}
         return Response(formatted_response, status=status.HTTP_403_FORBIDDEN)
 
-    alreadyExists = agent_profile.agent_review.filter(
-        agent__pkid=profile_user.pkid
-    ).exists()
+    alreadyExists = agent_profile.agent_review.filter(agent__pkid=profile_user.pkid).exists()
 
     if alreadyExists:
         formatted_response = {"detail": "Profile already reviewed"}

@@ -4,12 +4,15 @@
 // import Header from "./components/Header";
 import axios from "axios";
 import Router from "./router/Router";
+import { getCookie } from "typescript-cookie";
 
 if (process.env.REACT_APP_BASE_API === undefined) {
   axios.defaults.baseURL = "/api/v1";
 } else {
   axios.defaults.baseURL = `${process.env.REACT_APP_BASE_API}/api/v1`;
 }
+
+axios.defaults.withCredentials = true;
 
 const App = () => {
   return (

@@ -33,3 +33,5 @@ django-celery-email==3.0.0
 phonenumbers==8.12.33
 
 django-storages[boto3]==1.13.2  # https://github.com/jschneier/django-storages
+
+django-anymail==10.0  # https://github.com/anymail/django-anymail

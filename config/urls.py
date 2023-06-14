@@ -36,11 +36,11 @@ urlpatterns += [
     # path("supersecret/", admin.site.urls),
     path("api/v1/auth/", include("djoser.urls")),
     path("api/v1/auth/", include("djoser.urls.jwt")),
-    path("api/v1/profile/", include("apps.profiles.urls")),
-    path("api/v1/properties/", include("apps.properties.urls")),
-    path("api/v1/ratings/", include("apps.ratings.urls")),
-    path("api/v1/enquiries/", include("apps.enquiries.urls")),
-    path("api/v1/", include("apps.sections.urls")),
+    path("api/v1/profile/", include("codehelp.apps.profiles.urls")),
+    path("api/v1/properties/", include("codehelp.apps.properties.urls")),
+    path("api/v1/ratings/", include("codehelp.apps.ratings.urls")),
+    path("api/v1/enquiries/", include("codehelp.apps.enquiries.urls")),
+    path("api/v1/", include("codehelp.apps.sections.urls")),
 ]
 
 if settings.DEBUG:

@@ -93,13 +93,12 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "codehelp.users",
     # Your stuff: custom apps go here
-    "apps.common",
-    # "apps.users",
-    "apps.profiles",
-    "apps.ratings",
-    "apps.properties",
-    "apps.enquiries",
-    "apps.sections",
+    "codehelp.apps.common",
+    "codehelp.apps.profiles",
+    "codehelp.apps.ratings",
+    "codehelp.apps.properties",
+    "codehelp.apps.enquiries",
+    "codehelp.apps.sections",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -229,13 +228,27 @@ X_FRAME_OPTIONS = "DENY"
 
 # EMAIL
 # ------------------------------------------------------------------------------
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
+
+# https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
 EMAIL_BACKEND = env(
-    "DJANGO_EMAIL_BACKEND",
+    "EMAIL_BACKEND",
     default="django.core.mail.backends.smtp.EmailBackend",
 )
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-timeout
-EMAIL_TIMEOUT = 5
+MAILER_EMAIL_BACKEND = env("MAILER_EMAIL_BACKEND", default=EMAIL_BACKEND)
+EMAIL_HOST = env("EMAIL_HOST", default="")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD", default="")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER", default="")
+EMAIL_PORT = env("EMAIL_PORT", default="")
+EMAIL_USE_TLS = env("EMAIL_USE_TLS", default="")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="")
+EMAIL_TIMEOUT = 1
+
+# Anymail
+# ------------------------------------------------------------------------------
+# https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
+INSTALLED_APPS += ["anymail"]  # noqa: F405
+
+ANYMAIL = {}
 
 # ADMIN
 # ------------------------------------------------------------------------------
@@ -334,7 +347,7 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.TokenAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    # "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
@@ -378,12 +391,13 @@ DJOSER = {
     "ACTIVATION_URL": "activate/{uid}/{token}",
     "SEND_ACTIVATION_EMAIL": True,
     "SERIALIZERS": {
-        "user_create": "apps.users.serializers.CreateUserSerializer,",
-        "user": "apps.users.serializers.UserSerializer",
-        "current_user": "apps.users.serializers.UserSerializer",
+        "user_create": "codehelp.users.serializers.CreateUserSerializer,",
+        "user": "codehelp.users.serializers.UserSerializer",
+        "current_user": "codehelp.users.serializers.UserSerializer",
         "user_delete": "djoser.serializers.UserDeleteSerializer",
     },
 }
+
 
 import logging
 import logging.config

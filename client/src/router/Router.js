@@ -25,8 +25,19 @@ import LoginPage from "../pages/LoginPage";
 import PropertiesPage from "../pages/PropertiesPage";
 import RegisterPage from "../pages/RegisterPage";
 
+//auth
+import { Login, PrivateRoute, Registration } from "../features/auth/components";
+
 const Router = () => {
   const routes = useRoutes([
+    {
+      path: "/login",
+      children: [{ path: "/login", element: <Login /> }],
+    },
+    {
+      path: "/register",
+      children: [{ path: "/register", element: <Registration /> }],
+    },
     {
       path: "/",
       element: <Layout />,
