@@ -20,6 +20,8 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
+COPY ./build /usr/share/nginx/html
+
 # COPY . ${APP_HOME}
 
 EXPOSE 8080
