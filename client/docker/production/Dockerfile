@@ -4,13 +4,15 @@ FROM node:${NODE_VERSION} as node
 
 FROM node as build-stage
 
-ARG APP_HOME=/app
-
-WORKDIR ${APP_HOME}
+WORKDIR /app
 
 COPY ./package*.json .
 
-RUN npm install -g pnpm && pnpm install && pnpm build
+RUN npm install -g pnpm && pnpm install 
+
+COPY ./ /app/
+
+RUN pnpm build
 
 FROM nginx:1.21.3-alpine
 
