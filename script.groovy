@@ -21,7 +21,7 @@ def buildImage() {
         sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
         sh 'docker tag codehelp-front:1.0.1 djangoreactdev/codehelp-front:1.0.1'
         sh 'docker push djangoreactdev/codehelp-front:1.0.1'
-        sh 'docker tag codehelp-api:1.0.0 djangoreactdev/codehelp-api:1.0.2'
+        sh 'docker tag codehelp-api:1.0.2 djangoreactdev/codehelp-api:1.0.2'
         sh 'docker push djangoreactdev/codehelp-api:1.0.2'
         // sh 'docker tag codehelp-dashboard:1.0 djangoreactdev/codehelp-dashboard:1.0'
         // sh 'docker push djangoreactdev/codehelp-dashboard:1.0'
