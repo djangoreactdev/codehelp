@@ -2,7 +2,7 @@ ARG NODE_VERSION=18-alpine
 
 FROM node:${NODE_VERSION} as node
 
-FROM node as client-local-build
+FROM node as build-stage
 
 ARG APP_HOME=/app
 
@@ -14,9 +14,9 @@ RUN npm install -g pnpm && pnpm install
 
 RUN pnpm build
 
-RUN mv ${APP_HOME}/build/* /usr/share/nginx/html
-
 FROM nginx:1.21.3-alpine
+
+COPY --from=build-stage /app/build/ /usr/share/nginx/html
 
 RUN rm /etc/nginx/conf.d/default.conf
 
