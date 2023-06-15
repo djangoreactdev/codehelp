@@ -10,9 +10,7 @@ WORKDIR ${APP_HOME}
 
 COPY ./package*.json .
 
-RUN npm install -g pnpm && pnpm install 
-
-RUN pnpm build
+RUN npm install -g pnpm && pnpm install && pnpm build
 
 FROM nginx:1.21.3-alpine
 
