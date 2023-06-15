@@ -19,8 +19,8 @@ def buildImage() {
     withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
 
         sh 'echo $PASSWORD | docker login -u $USERNAME --password-stdin'
-        sh 'docker tag codehelp-front:1.0.0 djangoreactdev/codehelp-front:1.0.0'
-        sh 'docker push djangoreactdev/codehelp-front:1.0.0'
+        sh 'docker tag codehelp-front:1.0.1 djangoreactdev/codehelp-front:1.0.1'
+        sh 'docker push djangoreactdev/codehelp-front:1.0.1'
         sh 'docker tag codehelp-api:1.0.0 djangoreactdev/codehelp-api:1.0.0'
         sh 'docker push djangoreactdev/codehelp-api:1.0.0'
         // sh 'docker tag codehelp-dashboard:1.0 djangoreactdev/codehelp-dashboard:1.0'
