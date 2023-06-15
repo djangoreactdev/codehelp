@@ -74,6 +74,7 @@ services:
         context: ./client
         dockerfile: ./docker/production/Dockerfile
     container_name: codehelp-front
+    
     image: codehelp-front:1.0.0
     restart: unless-stopped
     volumes:
