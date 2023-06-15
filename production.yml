@@ -14,7 +14,7 @@ services:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
     # container_name: codehelp-api
-    image: codehelp-api:1.0.0
+    image: codehelp-api:1.0.1
     volumes:
       - production_django_media:/app/codehelp/media
       # - production_django_static:/app/staticfiles
