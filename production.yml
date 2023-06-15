@@ -78,11 +78,11 @@ services:
     image: codehelp-front:1.0.1
     restart: unless-stopped
     volumes:
-        - ./client:/app
-        - /app/node_modules
+        # - ./client:/app
+        # - /app/node_modules
         - production_django_media:/usr/share/nginx/media:ro
         - production_django_static:/usr/share/nginx/static:ro
-        - production_client_static:/usr/share/nginx/html:ro
+        # - production_client_static:/usr/share/nginx/html:ro
     ports:
         - "3000:3000"
 
